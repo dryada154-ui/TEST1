@@ -1,0 +1,1188 @@
+<!doctype html>
+<html lang="zh-TW" class="h-full">
+ <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>日本教育旅行手冊</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="/_sdk/element_sdk.js"></script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;500;700;900&amp;family=Zen+Maru+Gothic:wght@400;500;700&amp;display=swap" rel="stylesheet">
+  <style>
+    body {
+      box-sizing: border-box;
+    }
+    
+    * {
+      font-family: 'Noto Sans TC', 'Zen Maru Gothic', sans-serif;
+    }
+    
+    @page {
+      size: A4 portrait;
+      margin: 15mm 20mm;
+    }
+    
+    @media print {
+      html, body {
+        width: 210mm;
+        height: auto;
+        margin: 0;
+        padding: 0;
+      }
+      
+      body {
+        background: white !important;
+      }
+      
+      .no-print {
+        display: none !important;
+      }
+      
+      .page-break {
+        page-break-before: always;
+        break-before: page;
+      }
+      
+      .page-break-avoid {
+        page-break-inside: avoid;
+        break-inside: avoid;
+      }
+      
+      section {
+        page-break-after: auto;
+      }
+      
+      .day-card, .attraction-card {
+        page-break-inside: avoid;
+        break-inside: avoid;
+        margin-bottom: 0.5rem !important;
+      }
+      
+      /* 列印時縮小間距 */
+      .py-20 {
+        padding-top: 1rem !important;
+        padding-bottom: 1rem !important;
+      }
+      
+      .py-12 {
+        padding-top: 0.75rem !important;
+        padding-bottom: 0.75rem !important;
+      }
+      
+      .mb-12 {
+        margin-bottom: 1rem !important;
+      }
+      
+      .mb-8 {
+        margin-bottom: 0.75rem !important;
+      }
+      
+      .mb-6 {
+        margin-bottom: 0.5rem !important;
+      }
+      
+      .gap-6 {
+        gap: 0.5rem !important;
+      }
+      
+      .gap-4 {
+        gap: 0.4rem !important;
+      }
+      
+      .space-y-6 > * + * {
+        margin-top: 0.5rem !important;
+      }
+      
+      /* 縮小標題尺寸 */
+      .text-3xl, .text-4xl {
+        font-size: 1.5rem !important;
+      }
+      
+      .text-2xl {
+        font-size: 1.25rem !important;
+      }
+      
+      .text-xl {
+        font-size: 1.1rem !important;
+      }
+      
+      /* 縮小內距 */
+      .p-6 {
+        padding: 0.75rem !important;
+      }
+      
+      .p-4 {
+        padding: 0.5rem !important;
+      }
+      
+      .px-6 {
+        padding-left: 0.75rem !important;
+        padding-right: 0.75rem !important;
+      }
+      
+      .py-4 {
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
+      }
+    }
+    
+    @media screen {
+      .a4-container {
+        max-width: 210mm;
+        margin: 20px auto;
+        background: white;
+        box-shadow: 0 0 30px rgba(0,0,0,0.1);
+      }
+    }
+    
+    .a4-page {
+      width: 210mm;
+      min-height: 297mm;
+      padding: 20mm;
+      margin: 0 auto;
+      background: white;
+      box-sizing: border-box;
+    }
+    
+    @media print {
+      .a4-page {
+        margin: 0;
+        padding: 0;
+        box-shadow: none;
+      }
+      
+      .a4-container {
+        margin: 0;
+        box-shadow: none;
+      }
+    }
+    
+    .sakura {
+      position: fixed;
+      pointer-events: none;
+      animation: fall linear infinite;
+      opacity: 0.7;
+      z-index: 1;
+    }
+    
+    @keyframes fall {
+      0% {
+        transform: translateY(-10%) rotate(0deg);
+        opacity: 0;
+      }
+      10% {
+        opacity: 0.7;
+      }
+      90% {
+        opacity: 0.7;
+      }
+      100% {
+        transform: translateY(100%) rotate(720deg);
+        opacity: 0;
+      }
+    }
+    
+    .day-card {
+      transition: all 0.3s ease;
+    }
+    
+    @media screen {
+      .day-card:hover {
+        transform: translateY(-4px);
+      }
+    }
+    
+    .attraction-card {
+      transition: all 0.3s ease;
+    }
+    
+    @media screen {
+      .attraction-card:hover {
+        transform: scale(1.02);
+      }
+    }
+    
+    @media print {
+      .day-card, .attraction-card {
+        box-shadow: 0 1px 3px rgba(0,0,0,0.1) !important;
+        transform: none !important;
+      }
+    }
+    
+    .nav-item {
+      transition: all 0.2s ease;
+    }
+    
+    .nav-item:hover {
+      background: rgba(220, 38, 127, 0.1);
+    }
+    
+    .nav-item.active {
+      background: linear-gradient(135deg, #dc267f 0%, #fe6d73 100%);
+      color: white;
+    }
+    
+    .gradient-text {
+      background: linear-gradient(135deg, #dc267f 0%, #fe6d73 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    
+    .hero-pattern {
+      background-image: 
+        radial-gradient(circle at 20% 50%, rgba(220, 38, 127, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 80% 20%, rgba(254, 109, 115, 0.1) 0%, transparent 50%),
+        radial-gradient(circle at 40% 80%, rgba(255, 183, 197, 0.15) 0%, transparent 50%);
+    }
+    
+    .scroll-smooth {
+      scroll-behavior: smooth;
+    }
+    
+    ::-webkit-scrollbar {
+      width: 8px;
+    }
+    
+    ::-webkit-scrollbar-track {
+      background: #fdf2f4;
+    }
+    
+    ::-webkit-scrollbar-thumb {
+      background: linear-gradient(135deg, #dc267f 0%, #fe6d73 100%);
+      border-radius: 4px;
+    }
+  </style>
+  <style>@view-transition { navigation: auto; }</style>
+  <script src="/_sdk/data_sdk.js" type="text/javascript"></script>
+ </head>
+ <body class="h-full bg-gradient-to-br from-rose-50 via-white to-pink-50">
+  <div id="app" class="h-full w-full overflow-auto scroll-smooth a4-container"><!-- Floating Sakura Petals -->
+   <div id="sakura-container" class="no-print"></div><!-- Navigation -->
+   <nav class="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md shadow-sm no-print" style="max-width: 210mm; margin: 0 auto;">
+    <div class="max-w-6xl mx-auto px-4 py-3">
+     <div class="flex items-center justify-between">
+      <div class="flex items-center gap-2"><span class="text-2xl">🎵</span> <span class="font-bold text-gray-800 hidden sm:block">中大壢中音樂班</span>
+      </div>
+      <div class="flex items-center gap-2">
+       <div class="flex items-center gap-1 text-sm overflow-x-auto mr-3"><a href="#home" class="nav-item active px-3 py-1.5 rounded-full font-medium">首頁</a> <a href="#itinerary" class="nav-item px-3 py-1.5 rounded-full font-medium text-gray-600">行程</a> <a href="#attractions" class="nav-item px-3 py-1.5 rounded-full font-medium text-gray-600">景點</a> <a href="#tips" class="nav-item px-3 py-1.5 rounded-full font-medium text-gray-600">須知</a>
+       </div><button onclick="window.print()" class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-4 py-2 rounded-full font-medium text-sm hover:shadow-lg transition-all hover:scale-105 flex items-center gap-2"> <span>🖨️</span> 列印 </button>
+      </div>
+     </div>
+    </div>
+   </nav><!-- Hero Section -->
+   <section id="home" class="min-h-screen hero-pattern flex items-center justify-center pt-16 px-4">
+    <div class="text-center max-w-4xl mx-auto">
+     <div class="mb-6 animate-bounce"><span class="text-6xl">🗾</span>
+     </div>
+     <h1 id="main-title" class="text-3xl sm:text-5xl lg:text-6xl font-black mb-4 gradient-text leading-tight">國立中央大學附屬中壢高級中學</h1>
+     <h2 id="subtitle" class="text-xl sm:text-2xl lg:text-3xl font-bold text-gray-700 mb-6">113學年度音樂班赴日本教育旅行</h2>
+     <div class="flex flex-wrap justify-center gap-4 mb-8">
+      <div class="bg-white rounded-2xl shadow-lg px-6 py-4 border-l-4 border-pink-500">
+       <p class="text-sm text-gray-500">出發日期</p>
+       <p class="text-xl font-bold text-gray-800">2025/05/22</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg px-6 py-4 border-l-4 border-rose-500">
+       <p class="text-sm text-gray-500">返回日期</p>
+       <p class="text-xl font-bold text-gray-800">2025/05/28</p>
+      </div>
+      <div class="bg-white rounded-2xl shadow-lg px-6 py-4 border-l-4 border-red-400">
+       <p class="text-sm text-gray-500">旅行天數</p>
+       <p class="text-xl font-bold text-gray-800">7天6夜</p>
+      </div>
+     </div><!-- Flight Info -->
+     <div class="bg-white rounded-3xl shadow-xl p-6 mb-8 max-w-2xl mx-auto">
+      <h3 class="font-bold text-lg mb-4 flex items-center justify-center gap-2"><span>✈️</span> 航班資訊</h3>
+      <div class="grid sm:grid-cols-2 gap-4">
+       <div class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-4">
+        <p class="text-xs text-pink-600 font-medium mb-1">去程航班</p>
+        <p class="text-2xl font-black text-gray-800">BR184</p>
+        <p class="text-sm text-gray-600 font-medium">桃園機場 第二航廈</p>
+        <p class="text-sm text-gray-600">→ 東京成田機場 第一航廈</p>
+       </div>
+       <div class="bg-gradient-to-r from-rose-50 to-red-50 rounded-xl p-4">
+        <p class="text-xs text-rose-600 font-medium mb-1">回程航班</p>
+        <p class="text-2xl font-black text-gray-800">BR197</p>
+        <p class="text-sm text-gray-600 font-medium">東京成田機場 第一航廈</p>
+        <p class="text-sm text-gray-600">→ 桃園機場 第二航廈</p>
+       </div>
+      </div>
+      <div class="mt-4 bg-yellow-50 rounded-xl p-3 border border-yellow-200">
+       <p class="text-sm text-yellow-800 font-medium">⏰ 集合時間：05:00 於中壢高中集合</p>
+      </div>
+     </div><a href="#itinerary" class="inline-flex items-center gap-2 bg-gradient-to-r from-pink-500 to-rose-500 text-white px-8 py-4 rounded-full font-bold shadow-lg hover:shadow-xl transition-all hover:scale-105"> 查看詳細行程 <span>↓</span> </a>
+    </div>
+   </section><!-- Itinerary Section -->
+   <section id="itinerary" class="py-20 px-4 page-break">
+    <div class="max-w-6xl mx-auto">
+     <h2 class="text-3xl sm:text-4xl font-black text-center mb-4 gradient-text">行程總覽</h2>
+     <p class="text-gray-600 text-center mb-12">七天六夜的精彩旅程</p>
+     <div class="space-y-6"><!-- Day 1 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-pink-500 to-rose-500 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 1</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/22 (四)</span>
+         </div><span class="text-2xl">🛫</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">古今文化巡禮</h3>
+        <div class="space-y-3">
+         <div class="flex items-start gap-3"><span class="bg-pink-100 text-pink-600 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">05:00</span>
+          <p class="text-gray-700">中壢高中集合出發</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-pink-100 text-pink-600 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">上午</span>
+          <p class="text-gray-700">桃園機場 → 東京成田機場（BR184）</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-pink-100 text-pink-600 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">下午</span>
+          <p class="text-gray-700">淺草觀音寺、雷門、仲見世通參道</p>
+         </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：Candeo上野公園</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：機上餐點 ｜ 午：機上餐+壽司餐盒 ｜ 晚：代金 ￥2000</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">🌤️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：多雲時晴</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 20% ｜ 🌡️ 19-24°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 2 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-rose-500 to-red-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 2</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/23 (五)</span>
+         </div><span class="text-2xl">🎼</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">東京藝術大學附中交流</h3>
+        <div class="bg-rose-50 rounded-xl p-4 mb-4">
+         <p class="text-rose-800 font-medium">🎵 步行前往・全日交流參訪活動</p>
+        </div>
+        <div class="grid sm:grid-cols-2 gap-3">
+         <div class="flex items-center gap-2 text-gray-700"><span class="text-rose-500">●</span> 相見歡活動
+         </div>
+         <div class="flex items-center gap-2 text-gray-700"><span class="text-rose-500">●</span> 校園導覽
+         </div>
+         <div class="flex items-center gap-2 text-gray-700"><span class="text-rose-500">●</span> 課程觀摩
+         </div>
+         <div class="flex items-center gap-2 text-gray-700"><span class="text-rose-500">●</span> 音樂交流活動
+         </div>
+        </div>
+        <p class="text-sm text-gray-500 mt-4 italic">※ 實際細節依日校安排</p>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：Candeo上野公園</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：學校食堂體驗或餐盒 ｜ 晚：拉麵風味餐</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">☀️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：晴天</p>
+           <p class="text-xs text-blue-600">☔ 降���率 10% ｜ 🌡️ 20-25°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 3 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-red-400 to-orange-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 3</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/24 (六)</span>
+         </div><span class="text-2xl">🚃</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">城市探索日</h3>
+        <div class="bg-orange-50 rounded-xl p-4 mb-4">
+         <p class="text-orange-800 font-medium">🎫 提供交���一日券����乘大眾交通工具分組自由探索</p>
+        </div>
+        <p class="text-gray-600 mb-4">建議探索地點：</p>
+        <div class="flex flex-wrap gap-2"><span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">阿美橫町</span> <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">原宿</span> <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">竹下通</span> <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">澀谷</span> <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">秋葉原</span> <span class="bg-orange-100 text-orange-700 px-3 py-1 rounded-full text-sm">表參道</span>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：Candeo上野公園</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：代金 ￥2000 ｜ 晚：代金 ￥2000</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">🌥️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：多雲</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 30% ｜ 🌡️ 18-23°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 4 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-orange-400 to-amber-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 4</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/25 (日)</span>
+         </div><span class="text-2xl">🎵</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">東京藝術大學音樂會演出</h3>
+        <div class="space-y-3">
+         <div class="flex items-start gap-3"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">10:30</span>
+          <p class="text-gray-700">飯店出發</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">14:00</span>
+          <p class="text-gray-700">東京藝術大學音樂廳彩排</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-gradient-to-r from-amber-400 to-orange-400 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">17:00</span>
+          <p class="text-gray-700 font-bold">🎵 音樂會正式演出</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">晚間</span>
+          <p class="text-gray-700">前往靜岡</p>
+         </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：Hotel Route-Inn Fujichuokoen higashi</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：輕食餐盒 ｜ 晚：日式風味餐</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">☀️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：晴天</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 15% ｜ 🌡️ 21-26°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 5 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-amber-400 to-yellow-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 5</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/26 (一)</span>
+         </div><span class="text-2xl">🎸</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">音樂文化探索之旅</h3>
+        <div class="space-y-3">
+         <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl"><span class="text-2xl">🎹</span>
+          <div>
+           <p class="font-bold text-gray-800">YAMAHA製琴工廠</p>
+           <p class="text-sm text-gray-600">探索世界頂級鋼琴製造工藝</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl"><span class="text-2xl">🎺</span>
+          <div>
+           <p class="font-bold text-gray-800">濱松樂器博物館</p>
+           <p class="text-sm text-gray-600">日本最大公立樂器博物館</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-3 p-3 bg-yellow-50 rounded-xl"><span class="text-2xl">🛍️</span>
+          <div>
+           <p class="font-bold text-gray-800">御殿場 Premium Outlets</p>
+           <p class="text-sm text-gray-600">富士山景購物天堂</p>
+          </div>
+         </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：富士美��飯店</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：和洋式風味餐 ｜ 晚：代金 ￥2000</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">🌤️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：多雲時晴</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 20% ｜ 🌡️ 19-24°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 6 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-yellow-400 to-lime-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 6</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/27 (二)</span>
+         </div><span class="text-2xl">🏯</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">古城與音樂殿堂巡禮</h3>
+        <div class="space-y-3">
+         <div class="flex items-center gap-3 p-3 bg-lime-50 rounded-xl"><span class="text-2xl">🏯</span>
+          <div>
+           <p class="font-bold text-gray-800">小田原城</p>
+           <p class="text-sm text-gray-600">戰國名城・日本百名城之一</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-3 p-3 bg-lime-50 rounded-xl"><span class="text-2xl">🎭</span>
+          <div>
+           <p class="font-bold text-gray-800">東京歌劇城</p>
+           <p class="text-sm text-gray-600">新宿藝術文化綜合中心</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-3 p-3 bg-lime-50 rounded-xl"><span class="text-2xl">🎻</span>
+          <div>
+           <p class="font-bold text-gray-800">三得利音樂廳</p>
+           <p class="text-sm text-gray-600">世界級葡萄園式音樂廳</p>
+          </div>
+         </div>
+         <div class="flex items-center gap-3 p-3 bg-lime-50 rounded-xl"><span class="text-2xl">🌉</span>
+          <div>
+           <p class="font-bold text-gray-800">台場海濱公園</p>
+           <p class="text-sm text-gray-600">東京灣夜景・彩虹大橋</p>
+          </div>
+         </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🏨</span>
+          <p class="font-bold text-gray-800">住宿：MONday豐洲</p>
+         </div>
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：日式風味餐 ｜ 晚：和洋式風味餐</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">☀️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：晴���</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 10% ｜ 🌡️ 20-25°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div><!-- Day 7 -->
+      <div class="day-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="bg-gradient-to-r from-lime-400 to-emerald-400 text-white px-6 py-4">
+        <div class="flex items-center justify-between">
+         <div class="flex items-center gap-3"><span class="text-3xl font-black">DAY 7</span> <span class="bg-white/20 px-3 py-1 rounded-full text-sm">05/28 (三)</span>
+         </div><span class="text-2xl">🛬</span>
+        </div>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-4 text-gray-800">美好回憶・平安返程</h3>
+        <div class="space-y-3">
+         <div class="flex items-start gap-3"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">上午</span>
+          <p class="text-gray-700">新宿御苑漫步・日式庭園巡禮</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">中午</span>
+          <p class="text-gray-700">���場免稅店購物</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs font-medium whitespace-nowrap">下午</span>
+          <p class="text-gray-700">東京成田機場 → 桃園機場（BR197）</p>
+         </div>
+         <div class="flex items-start gap-3"><span class="bg-gradient-to-r from-emerald-400 to-green-400 text-white px-2 py-1 rounded text-xs font-medium whitespace-nowrap">傍晚</span>
+          <p class="text-gray-700 font-bold">返回中壢高中 🏠</p>
+         </div>
+        </div>
+        <div class="mt-4 pt-4 border-t border-gray-100">
+         <div class="flex items-center gap-2 mb-2"><span class="text-xl">🍽️</span>
+          <p class="text-sm text-gray-600">早：飯店早餐 ｜ 午：機上簡餐 ｜ 晚：溫暖的家</p>
+         </div>
+         <div class="flex items-center gap-2 bg-blue-50 rounded-lg p-2 mt-2"><span class="text-lg">🌤️</span>
+          <div class="flex-1">
+           <p class="text-xs font-medium text-blue-800">天氣：多雲時晴</p>
+           <p class="text-xs text-blue-600">☔ 降雨率 25% ｜ 🌡️ 19-24°C</p>
+          </div>
+         </div>
+        </div>
+       </div>
+      </div>
+     </div>
+    </div>
+   </section><!-- Attractions Section -->
+   <section id="attractions" class="py-20 px-4 bg-gradient-to-b from-white to-rose-50 page-break">
+    <div class="max-w-6xl mx-auto">
+     <h2 class="text-3xl sm:text-4xl font-black text-center mb-4 gradient-text">景點介紹</h2>
+     <p class="text-gray-600 text-center mb-12">探索日本文化與音樂之美</p>
+     <div class="grid md:grid-cols-2 gap-6"><!-- 淺草觀音寺 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-red-400 to-pink-500 flex items-center justify-center"><span class="text-8xl">⛩️</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">淺草觀音寺（淺草寺）</h3>
+        <p class="text-sm text-pink-600 mb-3">Sensoji Temple</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">東京最古老的寺院，創建於西元628年，距今已有近1400年歷史。供奉觀世音菩薩，是東京最具代表性的地標之一。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>雷門</strong>：正式名稱為「風雷神門」，懸掛著重達700公斤的巨大紅燈籠，高3.9公尺、直徑3.3公尺，是遊客必拍的經典畫面。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>仲見世通</strong>：從雷門到寺院之間長約250公尺的商店街，擁有近90家店舖，販售傳統工藝品、和服、人形燒、雷米餅等江戶風情伴手禮。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">東京必訪</span> <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">歷史古蹟</span> <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">傳統文化</span>
+        </div>
+       </div>
+      </div><!-- 東京藝術大學 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-purple-400 to-indigo-500 flex items-center justify-center"><span class="text-8xl">🎵</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">東京藝術大學</h3>
+        <p class="text-sm text-purple-600 mb-3">Tokyo University of the Arts</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">日本唯一的國立綜合藝術大學，前身為1887年創立的東京美術學校與東京音樂學校，1949年合併為東京藝術大學。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>���樂學部</strong>：包含作曲科、聲樂科、器樂科、指揮科、邦樂科等，培育出坂本龍一、小澤征爾等無數國際知名音樂家。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>音樂廳</strong>：擁有優異的音響設計，是日本最重要的音樂演��場地之一。��行將在此舉辦正式音樂會演出。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">音樂交流</span> <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">演出重點</span> <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">最高學府</span>
+        </div>
+       </div>
+      </div><!-- YAMAHA工廠 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-blue-400 to-cyan-500 flex items-center justify-center"><span class="text-8xl">🎹</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">YAMAHA製琴工廠</h3>
+        <p class="text-sm text-blue-600 mb-3">Yamaha Piano Factory</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">位於靜岡縣濱松市，YAMAHA創立於1887年，是世界最大的樂器製造商，產品涵蓋鋼琴、管樂器、弦樂器、打擊樂器等。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>工廠參觀</strong>：可親眼見證平台鋼琴從木材選材、音板製作、鍵盤組裝、音色調整到最終完成品的精密製程，每一步都展現日本職人的極致工藝。</p>
+        <p class="text-gray-600 text-sm leading-relaxed">從一塊木材到一台能��出美妙音色的鋼琴，需要經過超過8,000個零件的組裝與調整，了解樂器製造的奧秘。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">樂器體驗</span> <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">職人工藝</span> <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">音樂班必訪</span>
+        </div>
+       </div>
+      </div><!-- 濱松樂器博物館 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-amber-400 to-orange-500 flex items-center justify-center"><span class="text-8xl">🎺</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">濱松樂器博物館</h3>
+        <p class="text-sm text-amber-600 mb-3">Hamamatsu Museum of Musical Instruments</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">日本最大的公立樂器博物館，1995年開館，收藏超過3,300件來自世界各地、橫跨人類歷史的樂器。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>館藏特色</strong>：從日本傳統的雅樂器（琵琶、三味線、太鼓）、歐洲古典樂器（大鍵琴、魯特琴）、亞洲民族樂器，到現代電子合成器，完整呈現人類音樂文明的發展軌跡。</p>
+        <p class="text-gray-600 text-sm leading-relaxed">部分樂器設有試奏區，參觀者可親手觸摸、演奏，感受不同樂器的音色與構造特性。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">互動體驗</span> <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">世界樂器</span> <span class="bg-amber-100 text-amber-700 px-2 py-1 rounded text-xs">音樂教育</span>
+        </div>
+       </div>
+      </div><!-- 御殿場Outlets -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-sky-400 to-blue-500 flex items-center justify-center"><span class="text-8xl">🗻</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">御殿場Premium Outlets</h3>
+        <p class="text-sm text-sky-600 mb-3">Gotemba Premium Outlets</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">日本最大的暢貨購物中心，位於富士山腳下，佔地超過44,000平方公尺，擁有超過290家國際品牌店鋪。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>購物天堂</strong>：匯集精品品牌（GUCCI、PRADA、COACH）、運動品牌（Nike、Adidas）、日系品牌（Uniqlo、無印��品）等，折扣優惠最低可達3折。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>富士山美景</strong>：天氣晴朗時，可在購物同時欣賞壯麗的富士山全景，是購物與觀光兼具的絕佳地點。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-sky-100 text-sky-700 px-2 py-1 rounded text-xs">購���血拼</span> <span class="bg-sky-100 text-sky-700 px-2 py-1 rounded text-xs">富士山景</span> <span class="bg-sky-100 text-sky-700 px-2 py-1 rounded text-xs">品牌齊全</span>
+        </div>
+       </div>
+      </div><!-- 三得利音樂廳 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-rose-400 to-red-500 flex items-center justify-center"><span class="text-8xl">🎻</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">三得利音樂廳</h3>
+        <p class="text-sm text-rose-600 mb-3">Suntory Hall</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">1986年10月開幕，是日本第一座「葡萄園式」（Vineyard Style）音樂廳，被譽為「音樂的聖殿」。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>建築特色</strong>：主音樂廳可容納2,006位聽眾，座位環繞舞台呈階梯式配��，如��葡萄園的梯田，確保每個座位都能獲得最佳的視覺與聽覺體驗。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>世界級音響</strong>：指揮大師卡拉揚曾讚譽為「聲音的寶石箱」，音響效果被公認為世界頂級水��，是古典��樂愛好者的朝聖地��</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-rose-100 text-rose-700 px-2 py-1 rounded text-xs">世界級音響</span> <span class="bg-rose-100 text-rose-700 px-2 py-1 rounded text-xs">建築經典</span> <span class="bg-rose-100 text-rose-700 px-2 py-1 rounded text-xs">音樂殿堂</span>
+        </div>
+       </div>
+      </div><!-- 小田原城 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-emerald-400 to-teal-500 flex items-center justify-center"><span class="text-8xl">🏯</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">小田原城</h3>
+        <p class="text-sm text-emerald-600 mb-3">Odawara Castle</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">戰國時代北條氏五代的居城，作為關東地區的重要據點，曾是日本最堅��的城堡之一，被選為「日本百名城」。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>歷史意義</strong>：豐臣秀吉統一日本前，曾率領22萬大軍圍攻小田原城達三個月，最終北條氏降伏，標誌著戰國時代的結束。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>現況</strong>：1960年重建的天守閣內設有歷史博物���，頂層���望台可360度眺望相模灣、箱根連山��城下町景��。春季櫻花季時更是絕美。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs">日本百名城</span> <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs">武士文化</span> <span class="bg-emerald-100 text-emerald-700 px-2 py-1 rounded text-xs">歷史古蹟</span>
+        </div>
+       </div>
+      </div><!-- 東京歌劇城 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-violet-400 to-purple-500 flex items-center justify-center"><span class="text-8xl">🎭</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">東京歌劇城</h3>
+        <p class="text-sm text-violet-600 mb-3">Tokyo Opera City</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">位於新宿的大型複合式文化設施，1997年啟用，��合音樂廳、藝廊、辦公大樓與商業設施，高達54層樓，是東京重要的藝術文化地標。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>音樂廳</strong>：主音樂廳可容納1,632席，以優異的音響效果聞名，是東京愛樂交響樂團的主場館，定期舉辦世界級的古典音樂演出。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>藝術畫廊</strong>：收藏日本當代藝術作品，定期舉辦特展，展現日本現代藝術的多元面貌。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-violet-100 text-violet-700 px-2 py-1 rounded text-xs">文化中心</span> <span class="bg-violet-100 text-violet-700 px-2 py-1 rounded text-xs">音樂廳</span> <span class="bg-violet-100 text-violet-700 px-2 py-1 rounded text-xs">現代���築</span>
+        </div>
+       </div>
+      </div><!-- 新宿御苑 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-green-400 to-emerald-500 flex items-center justify-center"><span class="text-8xl">🌸</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">新宿御苑</h3>
+        <p class="text-sm text-green-600 mb-3">Shinjuku Gyoen National Garden</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">橫跨新宿、澀谷與千駄谷的大型國民公園，佔地58.3公頃，原為江戶時代信州高遠藩主內藤家的宅邸，1906年改為���室庭園，1949年對外開放。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>三大庭園風格</strong>：融合日式傳��庭園（枯山水、茶室）、英式風景庭園（廣闊草坪）與法式整形庭園（幾何花壇），展現東西方造園藝術的精華。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>四���之美</strong>：春季約1,000株櫻花、秋季紅葉、溫室熱帶植物，是東京都心最美的自然綠洲，也是新海誠動畫《言葉之庭》的場景。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">皇室庭園</span> <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">自然療癒</span> <span class="bg-green-100 text-green-700 px-2 py-1 rounded text-xs">賞���名所</span>
+        </div>
+       </div>
+      </div><!-- 台場 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-indigo-400 to-violet-500 flex items-center justify-center"><span class="text-8xl">🌉</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">���場海濱公園</h3>
+        <p class="text-sm text-indigo-600 mb-3">Odaiba Seaside Park</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">東京灣畔的人工島嶼，1990年代開發為集購物、娛樂、美食、藝術於一體的現代化休閒區，是東京最具未來感的觀光地點。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>著名地標</strong>：彩虹大橋（夜間點燈）、富���電視台球體瞭望室、1:1實物大小���彈立像、自由女神像複製品（法國贈送）、teamLab數位藝術美術館。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>夜景勝地</strong>：傍晚時分可欣賞東京灣落日，入夜後彩虹大橋與東京鐵塔燈光璀璨，是東京最浪漫的觀景地點之一。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs">夜景絕美</span> <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs">購物娛樂</span> <span class="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs">海濱公園</span>
+        </div>
+       </div>
+      </div><!-- 阿美橫町 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-orange-400 to-red-500 flex items-center justify-center"><span class="text-8xl">🏮</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">阿美橫町</h3>
+        <p class="text-sm text-orange-600 mb-3">Ameya-Yokocho</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">位於上野站與御徒町站之間的傳統市集街，全長約500公尺，擁有約400家店舖，保留濃厚的昭和時代庶民風情。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>購物天堂</strong>：從生鮮食品、乾貨零食、服飾鞋包、化妝品藥妝到運動用品應有盡有，價格實惠且可議價，是體驗日本傳統市場文化的最佳地點。</p>
+        <p class="text-gray-600 text-sm leading-relaxed">年末時期更是人潮洶湧，被稱為「年末的阿美��」，是東京人���買年貨的熱門地點。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">傳統市場</span> <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">庶民美食</span> <span class="bg-orange-100 text-orange-700 px-2 py-1 rounded text-xs">掃貨天堂</span>
+        </div>
+       </div>
+      </div><!-- ��宿・竹下通 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-pink-400 to-fuchsia-500 flex items-center justify-center"><span class="text-8xl">🎀</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">原宿・竹下通</h3>
+        <p class="text-sm text-pink-600 mb-3">Harajuku &amp; Takeshita Street</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">東京年輕文化的發源地，竹下通全長約350公尺，是日本最具代表性的青少年流行文化街道。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>時尚潮流</strong>：匯集平價服飾、個��小店、Cosplay服裝、可愛雜貨、創意甜點（彩虹棉花糖、可麗餅），是體驗「卡哇伊文化」的最佳地點。</p>
+        <p class="text-gray-600 text-sm leading-relaxed">週末常有打扮奇特的年輕人聚集，展現獨特的街頭時尚文化，是感受東京青春活力的絕佳地點。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">青春活力</span> <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">流行文化</span> <span class="bg-pink-100 text-pink-700 px-2 py-1 rounded text-xs">打卡聖地</span>
+        </div>
+       </div>
+      </div><!-- 澀谷 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-yellow-400 to-orange-500 flex items-center justify-center"><span class="text-8xl">🚶</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">澀谷</h3>
+        <p class="text-sm text-yellow-600 mb-3">Shibuya</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">東京最繁華的商業娛樂區之一，以「澀谷全向十字路口」（Scramble Crossing）聞名全球，每次綠燈可同時容納約3,000人穿越。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>忠犬八公像</strong>：位於澀谷車站前，紀念忠心等��主人9年的秋田��，是東京最著名的會面地標與打卡景點。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>購物娛樂</strong>：109百貨、SHIBUYA SCRAMBLE SQUARE、澀谷PARCO等，匯集時尚品牌、潮流文化與年輕活力。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">地標景點</span> <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">購物娛樂</span> <span class="bg-yellow-100 text-yellow-700 px-2 py-1 rounded text-xs">忠犬八公</span>
+        </div>
+       </div>
+      </div><!-- 秋葉原 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-blue-400 to-indigo-500 flex items-center justify-center"><span class="text-8xl">🎮</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">秋葉原</h3>
+        <p class="text-sm text-blue-600 mb-3">Akihabara</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">全球最大的電器與動漫文化聖地，被譽為「御宅族的天堂」，從戰後的電器街轉型為次文化的世界級中心。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>動漫次文化</strong>：數百家專賣店販售動畫、漫畫、遊戲、模型、公仔，女僕咖啡廳林立，是體驗日本ACG文化的必訪之地。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>電器產品</strong>：Yodobashi Camera、BicCamera等大型電器賣場，從最新科技到復��遊戲機應有盡有。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">動漫聖地</span> <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">電器天堂</span> <span class="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs">御宅文化</span>
+        </div>
+       </div>
+      </div><!-- 表參道 -->
+      <div class="attraction-card bg-white rounded-3xl shadow-lg overflow-hidden">
+       <div class="h-48 bg-gradient-to-br from-purple-400 to-pink-500 flex items-center justify-center"><span class="text-8xl">👗</span>
+       </div>
+       <div class="p-6">
+        <h3 class="text-xl font-bold mb-2 text-gray-800">表參道</h3>
+        <p class="text-sm text-purple-600 mb-3">Omotesando</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3">被譽為「東��的香榭麗舍大道」，全長約1公里的林���大道兩旁盡是國際精品���艦店與設計師品牌。</p>
+        <p class="text-gray-600 text-sm leading-relaxed mb-3"><strong>建築藝術</strong>：表參道Hills（安藤忠雄設計）、TOD'S表參道大樓（伊東豊雄設計）、Dior表參道（SANAA設計），是建築愛好者的朝聖地。</p>
+        <p class="text-gray-600 text-sm leading-relaxed"><strong>高級購物</strong>：Louis Vuitton、Prada、Gucci等精品店、設計師Select Shop、藝術咖啡廳，散發優雅時尚氛圍。</p>
+        <div class="mt-4 flex flex-wrap gap-2"><span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">精品大道</span> <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">建築藝術</span> <span class="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs">時尚品味</span>
+        </div>
+       </div>
+      </div>
+     </div><!-- Tokyo Metro Map -->
+     <div class="mt-12 bg-white rounded-3xl shadow-lg p-6">
+      <h3 class="text-2xl font-bold mb-4 gradient-text text-center">🚇 東京地鐵路線圖參考</h3>
+      <p class="text-gray-600 text-center mb-6">Day 3 自由探索日交通指南</p>
+      <div class="bg-gradient-to-br from-blue-50 to-indigo-50 rounded-2xl p-6 mb-6">
+       <h4 class="font-bold text-lg mb-4 text-gray-800">主要路線與景點對應</h4>
+       <div class="grid md:grid-cols-2 gap-4">
+        <div class="bg-white rounded-xl p-4 border-l-4 border-orange-400">
+         <p class="font-bold text-orange-600 mb-2">📍 銀座線（橘色）</p>
+         <p class="text-sm text-gray-600">上野 → 淺草 → 銀座 → 表參道 → 澀谷</p>
+         <p class="text-xs text-gray-500 mt-1">可達：淺草寺、表參道、澀谷</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border-l-4 border-green-500">
+         <p class="font-bold text-green-600 mb-2">📍 山手線（綠色）</p>
+         <p class="text-sm text-gray-600">環狀線：上野 → 秋葉原 → 東京 → ���宿 → 原宿 → 澀谷</p>
+         <p class="text-xs text-gray-500 mt-1">可達：秋葉原、原宿、澀谷</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border-l-4 border-red-500">
+         <p class="font-bold text-red-600 mb-2">📍 丸之內線（紅色）</p>
+         <p class="text-sm text-gray-600">池袋 → 新宿 → 銀座 → 東京</p>
+         <p class="text-xs text-gray-500 mt-1">可達：新宿、銀座、東京站</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border-l-4 border-purple-500">
+         <p class="font-bold text-purple-600 mb-2">📍 半藏門線（紫色）</p>
+         <p class="text-sm text-gray-600">澀谷 → 表參道 → 押上（晴空塔）</p>
+         <p class="text-xs text-gray-500 mt-1">可達：表參道、澀谷、晴空塔</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border-l-4 border-blue-500">
+         <p class="font-bold text-blue-600 mb-2">📍 日比谷線（銀灰色）</p>
+         <p class="text-sm text-gray-600">上野 → 秋葉原 → 銀座 → 六本木</p>
+         <p class="text-xs text-gray-500 mt-1">可達：秋葉原、銀座、六本木</p>
+        </div>
+        <div class="bg-white rounded-xl p-4 border-l-4 border-yellow-500">
+         <p class="font-bold text-yellow-600 mb-2">📍 千代田線（綠色）</p>
+         <p class="text-sm text-gray-600">表參道 → 明治神宮前（原宿）</p>
+         <p class="text-xs text-gray-500 mt-1">可達：表參道、原宿</p>
+        </div>
+       </div>
+      </div>
+      <div class="bg-gradient-to-r from-pink-50 to-rose-50 rounded-xl p-5 mb-4">
+       <h4 class="font-bold text-gray-800 mb-3">📍 上野站出發快速導航</h4>
+       <div class="space-y-2 text-sm text-gray-700">
+        <p>🏮 <strong>阿美橫町</strong>：步行3分鐘（上野站御徒町口）</p>
+        <p>⛩️ <strong>淺草</strong>：銀座線 5分鐘（上野 → 淺草）</p>
+        <p>🎮 <strong>秋葉原</strong>：山手線/日比谷線 3分鐘（上野 → 秋葉原）</p>
+        <p>🎀 <strong>原宿</strong>：山手線 20分鐘（上野 → 原宿）</p>
+        <p>🚶 <strong>澀谷</strong>：銀座線 25分鐘（上野 → 澀谷）</p>
+        <p>👗 <strong>表參道</strong>：銀座線 20分鐘（上野 → 表參道）</p>
+       </div>
+      </div>
+      <div class="bg-yellow-50 rounded-xl p-4 border border-yellow-200">
+       <p class="text-sm text-yellow-800 font-medium mb-2">💡 交通小提醒：</p>
+       <ul class="text-sm text-yellow-700 space-y-1">
+        <li>• Day 3 提供東京Metro地鐵24小時券（￥600），可無限次搭乘Tokyo Metro全線（不含JR線）</li>
+        <li>• 上野站為住宿據點，銀座線、日比谷線、���手線交會，交通極為便利</li>
+        <li>• 建議下載「東京地鐵APP」或「Google Maps」規劃路線</li>
+        <li>• 尖峰時段（8:00-9:00、18:00-19:00）車廂較擁擠，請注意安全與禮儀</li>
+        <li>• 車廂內請將手機調成靜音模式，避免通話</li>
+       </ul>
+      </div>
+      <div class="mt-6 text-center">
+       <p class="text-xs text-gray-500">詳細路線圖可至東京Metro官網查詢：<br><span class="text-blue-600 font-medium">https://www.tokyometro.jp/tcn/</span></p>
+      </div>
+     </div>
+    </div>
+   </section><!-- Tips Section -->
+   <section id="tips" class="py-20 px-4 page-break">
+    <div class="max-w-6xl mx-auto">
+     <h2 class="text-3xl sm:text-4xl font-black text-center mb-4 gradient-text">旅遊須知</h2>
+     <p class="text-gray-600 text-center mb-12">出發前必讀重要資訊</p>
+     <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6"><!-- 證件���備 -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-pink-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">📄</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">證件準備</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-pink-500 mt-1">✓</span> <span>護照（效期需超過6個月）</span></li>
+        <li class="flex items-start gap-2"><span class="text-pink-500 mt-1">✓</span> <span>身分證正本（備用）</span></li>
+        <li class="flex items-start gap-2"><span class="text-pink-500 mt-1">✓</span> <span>學生證</span></li>
+        <li class="flex items-start gap-2"><span class="text-pink-500 mt-1">✓</span> <span>健保卡</span></li>
+        <li class="flex items-start gap-2"><span class="text-pink-500 mt-1">✓</span> <span>大頭照2張（備用）</span></li>
+       </ul>
+      </div><!-- 行李準備 -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-rose-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">🧳</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">行李準備</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>演出服裝與樂譜</span></li>
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>��人樂器（如需要）</span></li>
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>換洗衣物（5月氣溫約18-25°C）</span></li>
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>薄外套或輕便外套</span></li>
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>舒適好走的鞋子</span></li>
+        <li class="flex items-start gap-2"><span class="text-rose-500 mt-1">✓</span> <span>個人盥洗用品</span></li>
+       </ul>
+      </div><!-- 電器與通訊 -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-orange-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">📱</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">電器與通訊</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-orange-500 mt-1">✓</span> <span>手機與充電器</span></li>
+        <li class="flex items-start gap-2"><span class="text-orange-500 mt-1">✓</span> <span>行動電源（容量限制20000mAh以下）</span></li>
+        <li class="flex items-start gap-2"><span class="text-orange-500 mt-1">✓</span> <span>日本電壓100V（台灣插頭可直接使用）</span></li>
+        <li class="flex items-start gap-2"><span class="text-orange-500 mt-1">✓</span> <span>建議購買日本網卡或WiFi分享器</span></li>
+        <li class="flex items-start gap-2"><span class="text-orange-500 mt-1">✓</span> <span>相機（記錄美好回憶）</span></li>
+       </ul>
+      </div><!-- 金錢準��� -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-amber-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">💴</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">金錢準備</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">✓</span> <span>日幣現金（建議兌換5-8萬日幣）</span></li>
+        <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">✓</span> <span>信用卡/金融卡（備用）</span></li>
+        <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">✓</span> <span>零錢包（日本��使用硬幣）</span></li>
+        <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">✓</span> <span>小額新台幣（桃園機場備用）</span></li>
+        <li class="flex items-start gap-2"><span class="text-amber-500 mt-1">✓</span> <span>1日圓≈0.21台幣（匯率參考）</span></li>
+       </ul>
+      </div><!-- 健康與安全 -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-green-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">🏥</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">健康與安全</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-green-500 mt-1">✓</span> <span>個人常用藥品</span></li>
+        <li class="flex items-start gap-2"><span class="text-green-500 mt-1">✓</span> <span>暈車藥（視個人需求）</span></li>
+        <li class="flex items-start gap-2"><span class="text-green-500 mt-1">✓</span> <span>防曬用品（5月日照較強）</span></li>
+        <li class="flex items-start gap-2"><span class="text-green-500 mt-1">✓</span> <span>口罩（公共場所建議配戴）</span></li>
+        <li class="flex items-start gap-2"><span class="text-green-500 mt-1">✓</span> <span>隨身攜帶緊急聯絡資訊</span></li>
+       </ul>
+      </div><!-- 日本禮儀 -->
+      <div class="bg-white rounded-3xl shadow-lg p-6">
+       <div class="w-16 h-16 bg-purple-100 rounded-2xl flex items-center justify-center mb-4"><span class="text-3xl">🎌</span>
+       </div>
+       <h3 class="text-lg font-bold mb-3 text-gray-800">日本禮儀須知</h3>
+       <ul class="space-y-2 text-sm text-gray-600">
+        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">✓</span> <span>電車內請保持安靜、勿講電話</span></li>
+        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">✓</span> <span>垃圾請隨身攜帶至垃圾桶丟棄</span></li>
+        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">✓</span> <span>排隊請依序進行、勿插隊</span></li>
+        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">✓</span> <span>進入室內、榻榻米請脫鞋</span></li>
+        <li class="flex items-start gap-2"><span class="text-purple-500 mt-1">✓</span> <span>用餐前說「いただきます」（我開動了）</span></li>
+       </ul>
+      </div>
+     </div><!-- Emergency Contact -->
+     <div class="mt-12 bg-gradient-to-r from-red-500 to-pink-500 rounded-3xl p-6 text-white">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-2"><span>🚨</span> 緊急聯絡資訊</h3>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+       <div class="bg-white/20 rounded-xl p-4">
+        <p class="text-sm opacity-80">日本���急電話</p>
+        <p class="text-xl font-bold">110（警察）</p>
+        <p class="text-xl font-bold">119（消防・救護）</p>
+       </div>
+       <div class="bg-white/20 rounded-xl p-4">
+        <p class="text-sm opacity-80">駐日台北經濟文化代表處</p>
+        <p class="text-lg font-bold">03-3280-7811</p>
+        <p class="text-xs opacity-80 mt-1">（24小時緊急專線）</p>
+       </div>
+       <div class="bg-white/20 rounded-xl p-4">
+        <p class="text-sm opacity-80">外交部��外急難救助</p>
+        <p class="text-lg font-bold">+886-800-085-095</p>
+        <p class="text-xs opacity-80 mt-1">（國外撥打專線）</p>
+       </div>
+       <div class="bg-white/20 rounded-xl p-4">
+        <p class="text-sm opacity-80">日本旅遊服務熱線</p>
+        <p class="text-lg font-bold">050-3816-2787</p>
+        <p class="text-xs opacity-80 mt-1">（中文服務）</p>
+       </div>
+      </div>
+     </div><!-- Packing Checklist -->
+     <div class="mt-8 bg-white rounded-3xl shadow-lg p-6">
+      <h3 class="text-xl font-bold mb-4 flex items-center gap-2 text-gray-800"><span>✅</span> 行前檢查清單</h3>
+      <p class="text-sm text-gray-500 mb-4">出發前請逐項確認，確保萬��一失</p>
+      <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-3"><label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">護照（效期6個月以上）</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">演出服裝</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">演出樂譜</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">個人樂器</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">日幣現金</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">手機充電器</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">行動電源</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">網卡/WiFi</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">個人藥品</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">換洗衣物</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">盥洗用品</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">薄外套</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">舒適鞋子</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">防曬用品</span> </label> <label class="flex items-center gap-3 p-3 bg-gray-50 rounded-xl cursor-pointer hover:bg-pink-50 transition-colors"> <input type="checkbox" class="w-5 h-5 accent-pink-500"> <span class="text-gray-700">雨具（輕便雨衣）</span> </label>
+      </div>
+     </div>
+    </div>
+   </section><!-- Footer -->
+   <footer class="bg-gray-900 text-white py-12 px-4">
+    <div class="max-w-6xl mx-auto text-center">
+     <div class="flex justify-center gap-4 mb-6"><span class="text-4xl">🎵</span> <span class="text-4xl">🗾</span> <span class="text-4xl">🎹</span> <span class="text-4xl">🌸</span>
+     </div>
+     <h3 class="text-xl font-bold mb-2">國立中央大學附屬中壢高級中學</h3>
+     <p class="text-gray-400 mb-4">113學年度音樂班日本教育旅行</p>
+     <p class="text-sm text-gray-500">2025年5月22日 - 5月28日（七天六夜）</p>
+     <div class="mt-8 pt-8 border-t border-gray-800">
+      <p class="text-xs text-gray-600">祝大家旅途愉快、演出成功、滿載而歸！🌸✨</p>
+      <p class="text-xs text-gray-600 mt-2">Music Connects the World 🎵🌏</p>
+     </div>
+    </div>
+   </footer>
+  </div>
+  <script>
+    const defaultConfig = {
+      main_title: '國立中央大學附屬中壢高級中學',
+      subtitle: '113學年度音樂班赴日本教育旅行',
+      background_color: '#fff1f2',
+      surface_color: '#ffffff',
+      text_color: '#1f2937',
+      primary_action: '#dc267f',
+      secondary_action: '#fe6d73',
+      font_family: 'Noto Sans TC',
+      font_size: 16
+    };
+    
+    let config = { ...defaultConfig };
+    
+    // Create sakura petals
+    function createSakura() {
+      const container = document.getElementById('sakura-container');
+      const petalCount = 15;
+      
+      for (let i = 0; i < petalCount; i++) {
+        const petal = document.createElement('div');
+        petal.className = 'sakura';
+        petal.innerHTML = '🌸';
+        petal.style.left = Math.random() * 100 + '%';
+        petal.style.fontSize = (Math.random() * 15 + 10) + 'px';
+        petal.style.animationDuration = (Math.random() * 10 + 15) + 's';
+        petal.style.animationDelay = (Math.random() * 10) + 's';
+        container.appendChild(petal);
+      }
+    }
+    
+    // Navigation active state
+    function updateNavigation() {
+      const sections = ['home', 'itinerary', 'attractions', 'tips'];
+      const navItems = document.querySelectorAll('.nav-item');
+      
+      let current = 'home';
+      const scrollPos = document.getElementById('app').scrollTop;
+      
+      sections.forEach(section => {
+        const element = document.getElementById(section);
+        if (element && element.offsetTop - 100 <= scrollPos) {
+          current = section;
+        }
+      });
+      
+      navItems.forEach(item => {
+        item.classList.remove('active');
+        if (item.getAttribute('href') === '#' + current) {
+          item.classList.add('active');
+        }
+      });
+    }
+    
+    // Smooth scroll for navigation
+    document.querySelectorAll('.nav-item').forEach(anchor => {
+      anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        const targetId = this.getAttribute('href').substring(1);
+        const targetElement = document.getElementById(targetId);
+        if (targetElement) {
+          document.getElementById('app').scrollTo({
+            top: targetElement.offsetTop - 60,
+            behavior: 'smooth'
+          });
+        }
+      });
+    });
+    
+    document.getElementById('app').addEventListener('scroll', updateNavigation);
+    
+    async function onConfigChange(newConfig) {
+      const mainTitle = document.getElementById('main-title');
+      const subtitle = document.getElementById('subtitle');
+      
+      if (mainTitle) {
+        mainTitle.textContent = newConfig.main_title || defaultConfig.main_title;
+        mainTitle.style.fontFamily = `${newConfig.font_family || defaultConfig.font_family}, sans-serif`;
+      }
+      
+      if (subtitle) {
+        subtitle.textContent = newConfig.subtitle || defaultConfig.subtitle;
+        subtitle.style.fontFamily = `${newConfig.font_family || defaultConfig.font_family}, sans-serif`;
+      }
+      
+      // Apply font family to all text elements
+      const baseFont = newConfig.font_family || defaultConfig.font_family;
+      document.body.style.fontFamily = `${baseFont}, sans-serif`;
+      
+      // Apply font size scaling
+      const baseSize = newConfig.font_size || defaultConfig.font_size;
+      document.documentElement.style.fontSize = `${baseSize}px`;
+      
+      // Apply colors
+      const bgColor = newConfig.background_color || defaultConfig.background_color;
+      const surfaceColor = newConfig.surface_color || defaultConfig.surface_color;
+      const textColor = newConfig.text_color || defaultConfig.text_color;
+      const primaryAction = newConfig.primary_action || defaultConfig.primary_action;
+      const secondaryAction = newConfig.secondary_action || defaultConfig.secondary_action;
+      
+      document.body.style.background = `linear-gradient(to bottom right, ${bgColor}, white, ${bgColor})`;
+      
+      // Update card backgrounds
+      document.querySelectorAll('.bg-white').forEach(el => {
+        el.style.backgroundColor = surfaceColor;
+      });
+      
+      // Update text colors
+      document.querySelectorAll('.text-gray-800, .text-gray-700, .text-gray-600').forEach(el => {
+        el.style.color = textColor;
+      });
+    }
+    
+    function mapToCapabilities(cfg) {
+      return {
+        recolorables: [
+          {
+            get: () => cfg.background_color || defaultConfig.background_color,
+            set: (value) => {
+              cfg.background_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ background_color: value });
+            }
+          },
+          {
+            get: () => cfg.surface_color || defaultConfig.surface_color,
+            set: (value) => {
+              cfg.surface_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ surface_color: value });
+            }
+          },
+          {
+            get: () => cfg.text_color || defaultConfig.text_color,
+            set: (value) => {
+              cfg.text_color = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ text_color: value });
+            }
+          },
+          {
+            get: () => cfg.primary_action || defaultConfig.primary_action,
+            set: (value) => {
+              cfg.primary_action = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ primary_action: value });
+            }
+          },
+          {
+            get: () => cfg.secondary_action || defaultConfig.secondary_action,
+            set: (value) => {
+              cfg.secondary_action = value;
+              if (window.elementSdk) window.elementSdk.setConfig({ secondary_action: value });
+            }
+          }
+        ],
+        borderables: [],
+        fontEditable: {
+          get: () => cfg.font_family || defaultConfig.font_family,
+          set: (value) => {
+            cfg.font_family = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_family: value });
+          }
+        },
+        fontSizeable: {
+          get: () => cfg.font_size || defaultConfig.font_size,
+          set: (value) => {
+            cfg.font_size = value;
+            if (window.elementSdk) window.elementSdk.setConfig({ font_size: value });
+          }
+        }
+      };
+    }
+    
+    function mapToEditPanelValues(cfg) {
+      return new Map([
+        ['main_title', cfg.main_title || defaultConfig.main_title],
+        ['subtitle', cfg.subtitle || defaultConfig.subtitle]
+      ]);
+    }
+    
+    // Initialize
+    createSakura();
+    
+    if (window.elementSdk) {
+      window.elementSdk.init({
+        defaultConfig,
+        onConfigChange,
+        mapToCapabilities,
+        mapToEditPanelValues
+      });
+      config = window.elementSdk.config || config;
+    }
+    
+    onConfigChange(config);
+  </script>
+ <script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'9bd353cdf4c84a0d',t:'MTc2ODI5MDg4NS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
